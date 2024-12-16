@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site Responsivo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  width: 100%;
+  height: 100px;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.slider {
+  width: 100%;
+  max-width: 600px;
+  overflow: hidden;
+  position: relative;
+  margin: 20px 0;
+}
+
+.slider img {
+  width: 100%;
+  display: none;
+}
+
+.slider img.active {
+  display: block;
+}
+
+.gallery {
+  width: 100%;
+  max-width: 600px;
+  overflow-x: auto;
+  display: flex;
+  gap: 15px;
+}
+
+.gallery img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.contacts {
+  width: 100%;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.contacts p {
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.contacts a {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #333;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.contacts a:hover {
+  background-color: #555;
+}
+  </style>
+</head>
+<body>
+  <!-- Cabeçalho com logo -->
+  <div class="header">
+    <img src="logo.png" alt="Logo">
+  </div>
+
+  <!-- Painel de imagens -->
+  <div class="slider">
+    <img src="slid_1.png" class="active" alt="Imagem 1">
+    <img src="slid_2.png" alt="Imagem 2">
+    <img src="slid_3 (2).png" alt="Imagem 3">
+    <img src="slid_3.png" alt="Imagem 4">
+    
+  </div>
+
+  <!-- Galeria com rolagem horizontal -->
+  <div class="gallery">
+    <a href="https://example1.com" target="_blank"><img src="cursos/1.png" alt="Thumb 1"></a>
+    <a href="https://example2.com" target="_blank"><img src="cursos/2.png" alt="Thumb 2"></a>
+    <a href="https://example3.com" target="_blank"><img src="cursos/3.png" alt="Thumb 3"></a>
+    <a href="https://example4.com" target="_blank"><img src="cursos/4.png" alt="Thumb 4"></a>
+    
+  </div>
+
+  <!-- Contatos e redes sociais -->
+  <div class="contacts">
+    
+    <a href="https://facebook.com" target="_blank">Facebook</a>
+    <a href="https://instagram.com" target="_blank">Instagram</a>
+    <a href="https://twitter.com" target="_blank">Twitter</a>
+    <p>Contatos: contato@exemplo.com</p>
+  </div>
+
+  <script>
+    // Script para o slider de imagens com transição simples
+    let currentIndex = 0;
+    const images = document.querySelectorAll('.slider img');
+
+    setInterval(() => {
+      images[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex + 1) % images.length;
+      images[currentIndex].classList.add('active');
+    }, 5000);
+  </script>
+</body>
+</html>
