@@ -18,6 +18,7 @@
       align-items: center;
     }
 
+    /* Cabeçalho */
     .header {
       width: 100%;
       height: 100px;
@@ -33,6 +34,7 @@
       border-radius: 50%;
     }
 
+    /* Slider */
     .slider {
       width: 100%;
       max-width: 650px;
@@ -50,13 +52,52 @@
       display: block;
     }
 
+    /* Filtro */
+    .filter-container {
+      width: 100%;
+      max-width: 1000px;
+      background-color: #6d36c4;
+      overflow-x: auto;
+      display: flex;
+      gap: 20px;
+      padding: 10px;
+      white-space: nowrap;
+      margin: 20px 0;
+      border-radius: 5px;
+    }
+
+    .filter-container span {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #ffffff;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .filter-container span:hover {
+      background-color: #f5258d;
+      color: white;
+    }
+
+    .clear-filter {
+      margin-left: auto;
+      font-weight: bold;
+      cursor: pointer;
+      background-color: #ff6666;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+    }
+
+    /* Galeria */
     .gallery {
       width: 100%;
       max-width: 1000px;
       overflow-x: auto;
       display: flex;
       gap: 20px;
-      padding: 50px 0;
+      padding: 20px 0;
     }
 
     .gallery img {
@@ -103,7 +144,7 @@
       background-color: #555;
     }
 
-  
+
   </style>
 </head>
 <body>
@@ -112,32 +153,43 @@
     <img src="logo.png" alt="Logo">
   </div>
 
-  <!-- Painel de imagens -->
+  <!-- Slider com transição automática -->
   <div class="slider">
     <img src="slid_1.png" class="active" alt="Imagem 1">
     <img src="slid_2.png" alt="Imagem 2">
-    <img src="slid_3 (2).png" alt="Imagem 3">
-    <img src="slid_3.png" alt="Imagem 4">
+    <img src="slid_3.png" alt="Imagem 3">
+    
+  </div>
+
+  <!-- Filtro -->
+  <div class="filter-container">    
+    <span data-filter="logística">logística</span>
+    <span data-filter="excel">Excel</span>
+    <span data-filter="word">Word</span>
+    <span data-filter="exemplo4">exemplo4</span>
+    <div class="clear-filter">Limpar Filtro</div>
   </div>
 
   <!-- Galeria com rolagem horizontal -->
   <div class="gallery">
-    <a href="https://example1.com" target="_blank"><img src="1.png" alt="Thumb 1"></a>
-    <a href="https://example2.com" target="_blank"><img src="2.png" alt="Thumb 2"></a>
-    <a href="https://example3.com" target="_blank"><img src="3.png" alt="Thumb 3"></a>
-    <a href="https://example4.com" target="_blank"><img src="4.png" alt="Thumb 4"></a>
+    <img src="logística_1.png" data-category="logística" alt="Thumb 1">
+    <img src="excel_1.png" data-category="excel" alt="Thumb 2">
+    <img src="word_1.png" data-category="word" alt="Thumb 3">
+    <img src="logística_2.png" data-category="logística" alt="Thumb 4">
+    <img src="excel_2.png" data-category="excel" alt="Thumb 5">
+    <img src="excel_3.png" data-category="excel" alt="Thumb 6">
   </div>
 
-  <!-- Contatos e redes sociais -->
-  <div class="contacts">
-    <a href="https://facebook.com" target="_blank">Whats App</a>
+   <!-- Contatos e redes sociais -->
+   <div class="contacts">
+    <a href="https://facebook.com" target="_blank">WhatsApp</a>
     <a href="https://instagram.com" target="_blank">Instagram</a>
     
    
   </div>
 
   <script>
-    // Script para o slider de imagens com transição simples
+    // Slider com transição automática
     let currentIndex = 0;
     const images = document.querySelectorAll('.slider img');
 
@@ -145,7 +197,30 @@
       images[currentIndex].classList.remove('active');
       currentIndex = (currentIndex + 1) % images.length;
       images[currentIndex].classList.add('active');
-    }, 5000);
+    }, 3000); // Mudança a cada 3 segundos
+
+    // Filtro de galeria
+    const filterButtons = document.querySelectorAll('.filter-container span');
+    const clearFilterButton = document.querySelector('.clear-filter');
+    const galleryImages = document.querySelectorAll('.gallery img');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const filter = button.getAttribute('data-filter');
+        filterImages(filter);
+      });
+    });
+
+    clearFilterButton.addEventListener('click', () => {
+      galleryImages.forEach(img => img.style.display = 'inline-block');
+    });
+
+    function filterImages(category) {
+      galleryImages.forEach(img => {
+        const imgCategory = img.getAttribute('data-category');
+        img.style.display = imgCategory === category ? 'inline-block' : 'none';
+      });
+    }
   </script>
 </body>
 </html>
